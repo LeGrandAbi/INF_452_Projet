@@ -1,2 +1,24 @@
-needs to be filled
+Voici le plan:
+
+LES PRINCIPALES ETAPES DU PROGRAMME:
+
+	[interface (input)]
+		|
+		|	{Matrice au format qu'on veut}
+		V
+	[Encodeur DIMAC]
+		|
+		|	{fichier format DIMAC}
+		V
+	[SAT-Solver (minisat)]
+		|
+		|	{fichier format DIMAC}
+		V
+	[Decodeur DIMAC]
+		|
+		|	{Matrice au meme format que precedement}
+		V
+	[interface (output)]
+	
+Ou [...] est un programme et {...} est un fichier qui servira de transfert de donne entre chaque programme
 
