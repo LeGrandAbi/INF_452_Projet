@@ -7,7 +7,7 @@ Omar LAACHIRI, L2 MIAGE, 12313076
 
 Salah Abdelaziz L2 MIAGE, 12316993
 
-Yacine ..., L2 MIN, ...
+Yacine maati , L2 MIN, 12519868.
 
 
 ## PROJECT:
