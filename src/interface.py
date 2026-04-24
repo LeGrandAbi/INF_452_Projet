@@ -7,6 +7,7 @@ class Interface:
 		self.window_active = False
 
 		self.image = pg.Surface((1000,1000))
+		self.matrice = None
 
 	def run(self):
 		self.window_active = True
@@ -37,17 +38,19 @@ class Interface:
 class InputInterface(Interface):
 	def __init__(self):
 		super().__init__()
-		self.image.fill((0,255,0))
 
 	def update(self):
-		pass
+		self.image.fill((0,255,0))
+
+	def get_matrice(self):
+		return self.matrice
 
 
 class OutputInterface(Interface):
-	def __init__(self):
+	def __init__(self, matrice):
 		super().__init__()
-		self.image.fill((0,0,255))
+		self.matrice = matrice
 
 	def update(self):
-		pass
+		self.image.fill((0,0,255))
 		
