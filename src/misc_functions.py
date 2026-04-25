@@ -8,7 +8,7 @@ def fit_surf_in_rect(surf, rect):
 	return fitted_surf
 
 def execute_command(*cmd):
-	print("Executing : " + str(cmd))
+	print("\nExecuting : " + str(cmd))
 	result = subprocess.run(cmd, capture_output=True, text=True)
 	print("Exit Code:", result.returncode)
 	print("Output:", result.stdout)

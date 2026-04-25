@@ -2,7 +2,7 @@ from misc_functions import *
 from interface import *
 from dimac_coder import *
 
-DIMAC_FOLDER_PATH = "../dimac"
+DIMAC_FOLDER_PATH = "dimac"
 DIMAC_INPUT_FILENAME = "input_dimac"
 DIMAC_OUTPUT_FILENAME = "output_dimac"
 
