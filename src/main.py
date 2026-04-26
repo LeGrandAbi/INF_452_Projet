@@ -6,7 +6,10 @@ DIMAC_FOLDER_PATH = "dimac"
 DIMAC_INPUT_FILENAME = "input_dimac"
 DIMAC_OUTPUT_FILENAME = "output_dimac"
 
-inputInterface = InputInterface()
+#size = int(input("Enter board size : "))
+size = 9
+
+inputInterface = InputInterface(size)
 inputInterface.run()
 matrice = inputInterface.get_matrice()
 

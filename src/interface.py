@@ -35,14 +35,19 @@ class Interface:
 
 
 class InputInterface(Interface):
-	def __init__(self):
+	def __init__(self, size):
 		super().__init__()
+		self.matrice = [[0 for j in range(size)] for i in range(size)]
 
 	def update(self):
 		pass
 
+	def update_window(self):
+		self.window.fill("white")
+		pg.display.flip()
+
 	def get_matrice(self):
-		return None
+		return self.matrice
 
 
 class OutputInterface(Interface):
