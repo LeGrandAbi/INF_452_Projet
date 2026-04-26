@@ -44,6 +44,7 @@ class InputInterface(Interface):
 
 	def update_window(self):
 		self.window.fill("white")
+		mf.draw_grid(self.window, len(self.matrice))
 		pg.display.flip()
 
 	def get_matrice(self):
