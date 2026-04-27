@@ -1,8 +1,8 @@
 import pygame as pg
 import misc_functions as mf
-from settings import *
 import sys
 
+WINDOW_SIZE = 1000
 
 class InputInterface():
 	def __init__(self, size):
