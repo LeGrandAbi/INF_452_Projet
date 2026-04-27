@@ -21,7 +21,7 @@ encode_dimac(matrice, input_filepath)
 execute_command("minisat", input_filepath, output_filepath)
 execute_command("cat", output_filepath)
 
-result_matrice = decode_dimac(output_filepath)
+result_matrice = decode_dimac(size, output_filepath)
 
 outputInterface = OutputInterface(result_matrice)
 outputInterface.run()
