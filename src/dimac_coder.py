@@ -15,6 +15,14 @@ def encode_dimac(matrice, input_filepath):
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
 	# rajouter les clauses unitaires
+	i = 1
+	for y in range(len(matrice)):
+		for x in range(len(matrice)):
+			if matrice[y][x] == 1:
+				file_content = file_content + str(i) + " 0\n"
+			elif matrice[y][x] == -1:
+				file_content = file_content + str(-i) + " 0\n"
+			i = i + 1
 
 
 	# rajouter les clauses de voisinnage
