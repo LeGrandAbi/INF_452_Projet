@@ -14,5 +14,5 @@ def decode_dimac(filepath):
 	'''
 	needs to be filled
 	'''
-	matrice = [[]]
+	matrice = [[0]]
 	return matrice

@@ -65,6 +65,9 @@ class OutputInterface():
 		self.window_rect = self.window.get_rect()
 		self.window_active = False
 
+		self.size = len(matrice)
+		self.matrice = matrice
+
 	def handle_events(self):
 		active = True
 		for event in pg.event.get():
@@ -76,7 +79,8 @@ class OutputInterface():
 		return active
 
 	def update_window(self):
-		self.window.fill(0)
+		self.window.fill("gray")
+		self.draw_board()
 		pg.display.flip()
 
 	def run(self):
@@ -84,3 +88,15 @@ class OutputInterface():
 		while self.window_active:
 			self.window_active = self.handle_events()
 			self.update_window()
+
+	def draw_board(self):
+		mf.draw_grid(self.window, self.size)
+		for y in range(self.size):
+			for x in range(self.size):
+				circle_x = x*self.window_rect.width/self.size + (self.window_rect.width/self.size/2)
+				circle_y = y*self.window_rect.height/self.size + (self.window_rect.height/self.size/2)
+				circle_r = self.window_rect.width/self.size/2
+				if self.matrice[y][x] == 1:
+					pg.draw.circle(self.window, "white", (circle_x, circle_y), circle_r)
+				elif self.matrice[y][x] == -1:
+					pg.draw.circle(self.window, "black", (circle_x, circle_y), circle_r)
