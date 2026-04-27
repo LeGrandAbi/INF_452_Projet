@@ -15,7 +15,7 @@ def encode_dimac(matrice, input_filepath):
 				n_clauses_unit = n_clauses_unit + 1 
 
 	n_var = len(matrice)**2
-	n_clauses = (len(matrice) -1)**2 + n_clauses_unit
+	n_clauses = ((len(matrice) -1)**2)*2 + n_clauses_unit
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
 	# rajouter les clauses unitaires
@@ -35,6 +35,11 @@ def encode_dimac(matrice, input_filepath):
 		for x in range(size - 1):
 			# blanc
 			file_content = file_content + str(-var_from_coords(size, x, y)) + " "
+			file_content = file_content + str(-var_from_coords(size, x+1, y)) + " "
+			file_content = file_content + str(-var_from_coords(size, x, y+1)) + " "
+			file_content = file_content + str(-var_from_coords(size, x+1, y+1)) + " 0\n"
+			# noir
+			file_content = file_content + str(var_from_coords(size, x, y)) + " "
 			file_content = file_content + str(var_from_coords(size, x+1, y)) + " "
 			file_content = file_content + str(var_from_coords(size, x, y+1)) + " "
 			file_content = file_content + str(var_from_coords(size, x+1, y+1)) + " 0\n"
