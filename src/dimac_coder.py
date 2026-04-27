@@ -33,6 +33,7 @@ def encode_dimac(matrice, input_filepath):
 	size = len(matrice)
 	for y in range(size - 1):
 		for x in range(size - 1):
+			# blanc
 			file_content = file_content + str(-var_from_coords(size, x, y)) + " "
 			file_content = file_content + str(var_from_coords(size, x+1, y)) + " "
 			file_content = file_content + str(var_from_coords(size, x, y+1)) + " "
@@ -51,4 +52,11 @@ def decode_dimac(size, filepath):
 	content = content.split()
 
 	matrice = [[0 for j in range(size)] for i in range(size)]
+	i = 0
+	for y in range(size):
+		for x in range(size):
+			c = int(content[i])
+			matrice[y][x] = c / abs(c)
+			i = i + 1
+
 	return matrice
