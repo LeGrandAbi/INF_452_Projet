@@ -10,7 +10,7 @@ def encode_dimac(matrice, input_filepath):
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
 	# rajouter les clauses unitaires
-	
+
 
 	# rajouter les clauses de voisinnage
 
@@ -21,5 +21,10 @@ def encode_dimac(matrice, input_filepath):
 
 
 def decode_dimac(size, filepath):
+	with open(filepath, "r") as f:
+		content = f.readlines()[1]
+		f.close()
+	content = content.split()
+	
 	matrice = [[0 for j in range(size)] for i in range(size)]
 	return matrice
