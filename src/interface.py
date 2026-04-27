@@ -1,5 +1,4 @@
 import pygame as pg
-import misc_functions as mf
 import sys
 
 WINDOW_SIZE = 1000
@@ -33,7 +32,11 @@ class InputInterface():
 		return self.matrice
 
 	def draw_board(self):
-		mf.draw_grid(self.window, self.size)
+		for i in range(self.size):
+			y = i*self.window_rect.height/self.size
+			pg.draw.line(self.window, "black", (0, y), (self.window_rect.right, y))
+			x = i*self.window_rect.width/self.size
+			pg.draw.line(self.window, "black", (x, 0), (x, self.window_rect.bottom))
 		for y in range(self.size):
 			for x in range(self.size):
 				circle_x = x*self.window_rect.width/self.size + (self.window_rect.width/self.size/2)
@@ -90,7 +93,11 @@ class OutputInterface():
 			self.update_window()
 
 	def draw_board(self):
-		mf.draw_grid(self.window, self.size)
+		for i in range(self.size):
+			y = i*self.window_rect.height/self.size
+			pg.draw.line(self.window, "black", (0, y), (self.window_rect.right, y))
+			x = i*self.window_rect.width/self.size
+			pg.draw.line(self.window, "black", (x, 0), (x, self.window_rect.bottom))
 		for y in range(self.size):
 			for x in range(self.size):
 				circle_x = x*self.window_rect.width/self.size + (self.window_rect.width/self.size/2)

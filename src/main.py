@@ -1,10 +1,17 @@
-from misc_functions import *
+import subprocess
 from interface import *
 from dimac_coder import *
 
 DIMAC_FOLDER_PATH = "dimac"
 DIMAC_INPUT_FILENAME = "input_dimac"
 DIMAC_OUTPUT_FILENAME = "output_dimac"
+
+def execute_command(*cmd):
+	print("\nExecuting : " + str(cmd))
+	result = subprocess.run(cmd, capture_output=True, text=True)
+	print("Exit Code:", result.returncode)
+	print("Output:", result.stdout)
+	print("Errors:", result.stderr)
 
 #size = int(input("Enter board size : "))
 size = 9
