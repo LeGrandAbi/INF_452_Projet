@@ -1,5 +1,9 @@
 import sys
 
+def var_from_coords(matrice_size, x, y):
+	return y*matrice_size + x + 1
+
+
 def encode_dimac(matrice, input_filepath):
 	file_content = ""
 
@@ -26,6 +30,13 @@ def encode_dimac(matrice, input_filepath):
 
 
 	# rajouter les clauses de voisinnage
+	size = len(matrice)
+	for y in range(size - 1):
+		for x in range(size - 1):
+			file_content = file_content + str(-var_from_coords(size, x, y)) + " "
+			file_content = file_content + str(var_from_coords(size, x+1, y)) + " "
+			file_content = file_content + str(var_from_coords(size, x, y+1)) + " "
+			file_content = file_content + str(var_from_coords(size, x+1, y+1)) + " 0\n"
 
 
 	with open(input_filepath, "w") as f:
