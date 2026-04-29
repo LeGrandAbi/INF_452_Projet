@@ -26,7 +26,7 @@ output_filepath = DIMAC_FOLDER_PATH + "/" + DIMAC_OUTPUT_FILENAME
 encode_dimac(matrice, input_filepath)
 
 execute_command("minisat", input_filepath, output_filepath)
-execute_command("cat", output_filepath)
+#execute_command("cat", output_filepath)
 
 result_matrice = decode_dimac(size, output_filepath)
 
