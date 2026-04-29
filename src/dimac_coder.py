@@ -13,15 +13,13 @@ def connectvar_from_vars(matrice_size, x, y):
 
 def get_n_clauses(matrice):
 	l = len(matrice)
+
 	n_clauses_unit = 0
-	y = 
-	while y < l:
-		x = 0
-		while x < l:
+	for y in range(l):
+		for x in range(l):
 			if matrice[y][x] != 0:
-				n_clauses_unit = n_clauses_unit + 1
-			x = x + 1
-		y = y + 1
+				n_clauses_unit = n_clauses_unit + 1 
+
 	return 12*(l**5) - 24*(l**4) + (l**3) + 12*(l**2) - 2*l + 1 + n_clauses_unit
 
 
