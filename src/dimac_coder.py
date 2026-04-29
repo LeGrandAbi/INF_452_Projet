@@ -3,6 +3,12 @@ import sys
 def var_from_coords(matrice_size, x, y):
 	return y*matrice_size + x + 1
 
+def connectvar_from_vars(matrice_size, x, y):
+	size = matrice_size**2
+	v = size + (x-1)*(size-1) + y - 1
+	if x > y:
+		v = v - 1
+	return v
 
 def encode_dimac(matrice, input_filepath):
 	file_content = ""
