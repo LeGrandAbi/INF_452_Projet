@@ -65,15 +65,17 @@ def encode_dimac(matrice, input_filepath):
 
 	file_content = ""
 
-	# produce the header
+	# produce and append to file_content the header
 	n_var = len(matrice)**4 - 2
 	n_clauses = get_n_clauses(matrice)
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
-	# produce the unitary constraints
+	# produce and append to file_content the unitary constraints
 	i = 1
 	for y in range(len(matrice)):
 		for x in range(len(matrice)):
+			# for each cell, if its defined (different from 0) we add a unitary clause 
+			#notice we don't use var_from_coords() since its a linear path through the matrice
 			if matrice[y][x] == 1:
 				file_content = file_content + str(i) + " 0\n"
 			elif matrice[y][x] == -1:
@@ -82,7 +84,7 @@ def encode_dimac(matrice, input_filepath):
 
 	size = len(matrice)
 
-	# produce the no_square constraints
+	# produce and append to file_content the no_square constraints
 	for y in range(size - 1):
 		for x in range(size - 1):
 			# blanc
@@ -97,30 +99,33 @@ def encode_dimac(matrice, input_filepath):
 			file_content = file_content + str(var_from_coords(size, x+1, y+1)) + " 0\n"
 
 
-	# produce the connectivity constraints
+	# produce and append to file_content the connectivity constraints
 	for xb in range(size):
 		for xa in range(size):
+			# for each cell x = (xa, xb)
 			for yb in range(size):
 				for ya in range(size):
+					# for each cell y = (ya, yb)
 					if (xa != ya) or (xb != yb):
+						# if x != y
 						x = var_from_coords(size, xa, xb)
 						y = var_from_coords(size, ya, yb)
 						C_xy = connectvar_from_vars(size, x, y)
 
-						# blanc
+						# both are white and need to be connected
 						file_content = file_content + str(-x) + " "
 						file_content = file_content + str(-y) + " "
 						file_content = file_content + str(C_xy) + " 0\n"
 
-						# noir
+						# both are black and need to be connected
 						file_content = file_content + str(x) + " "
 						file_content = file_content + str(y) + " "
 						file_content = file_content + str(C_xy) + " 0\n"
 
 
-	# produce the connectivity_conditions constraints
+	# produce and append to file_content the connectivity_conditions constraints
 
-
+	# write into the given filename the produced header and constraints
 	with open(input_filepath, "w") as f:
 		f.write(file_content)
 		f.close()
