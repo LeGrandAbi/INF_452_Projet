@@ -12,8 +12,21 @@ def connectvar_from_vars(matrice_size, x, y):
 	return v
 
 def get_n_clauses(matrice):
+	'''
+	returns the number of clauses necessary to the resolution of the yin-yang problem
+
+	n_clauses = n_squares + 2*nb_connect + nb_unit
+	
+	with l being the width/height of the board:
+		n_squares = "the number of possible 2x2 squares on the board" = (l - 1)^2
+		nb_connect = "the number of possible connection between cells" = l^2 * (l^2 - 1)
+		nb_unit = "the quantity of unitary clauses / cells that need be stay intact"
+	'''
 	l = len(matrice)
 
+	# a unitary clause is when a cell is defined (=/= 0)
+	# since matrice[y][y] is white if it equals 1
+	# 	and matrice[y][y] is black if it equals -1
 	n_clauses_unit = 0
 	for y in range(l):
 		for x in range(l):
