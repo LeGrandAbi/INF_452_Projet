@@ -20,7 +20,7 @@ def get_n_clauses(matrice):
 			if matrice[y][x] != 0:
 				n_clauses_unit = n_clauses_unit + 1 
 
-	return 12*(l**5) - 24*(l**4) + (l**3) + 12*(l**2) + n_clauses_unit
+	return 12*(l**5) - 24*(l**4) + (l**3) + 12*(l**2) - 2*l + 1 + n_clauses_unit
 
 
 def encode_dimac(matrice, input_filepath):
