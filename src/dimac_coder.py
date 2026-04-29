@@ -3,6 +3,7 @@ import sys
 def var_from_coords(matrice_size, x, y):
 	return y*matrice_size + x + 1
 
+
 def connectvar_from_vars(matrice_size, x, y):
 	size = matrice_size**2
 	v = size + (x-1)*(size-1) + y - 1
@@ -10,18 +11,25 @@ def connectvar_from_vars(matrice_size, x, y):
 		v = v - 1
 	return v
 
+def get_n_clauses(matrice):
+	l = len(matrice)
+
+	n_clauses_unit = 0
+	for y in range(l):
+		for x in range(l):
+			if matrice[y][x] != 0:
+				n_clauses_unit = n_clauses_unit + 1 
+
+	return 12*(l**5) - 24*(l**4) + (l**3) + 12*(l**2) + n_clauses_unit
+
+
 def encode_dimac(matrice, input_filepath):
 	file_content = ""
 
 	# rajouter l'entete
-	n_clauses_unit = 0
-	for y in range(len(matrice)):
-		for x in range(len(matrice)):
-			if matrice[y][x] != 0:
-				n_clauses_unit = n_clauses_unit + 1 
 
-	n_var = len(matrice)**2
-	n_clauses = ((len(matrice) -1)**2)*2 + n_clauses_unit
+	n_var = len(matrice)**3
+	n_clauses = get_n_clauses(matrice)
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
 	# rajouter les clauses unitaires
@@ -49,6 +57,12 @@ def encode_dimac(matrice, input_filepath):
 			file_content = file_content + str(var_from_coords(size, x+1, y)) + " "
 			file_content = file_content + str(var_from_coords(size, x, y+1)) + " "
 			file_content = file_content + str(var_from_coords(size, x+1, y+1)) + " 0\n"
+
+
+	# rajouter les clauses de connectivite
+
+
+	# rajouter les clauses de conditions de connectivite
 
 
 	with open(input_filepath, "w") as f:
