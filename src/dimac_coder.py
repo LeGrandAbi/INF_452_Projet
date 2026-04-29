@@ -42,9 +42,9 @@ def encode_dimac(matrice, input_filepath):
 				file_content = file_content + str(-i) + " 0\n"
 			i = i + 1
 
+	size = len(matrice)
 
 	# rajouter les clauses de voisinnage
-	size = len(matrice)
 	for y in range(size - 1):
 		for x in range(size - 1):
 			# blanc
@@ -60,6 +60,18 @@ def encode_dimac(matrice, input_filepath):
 
 
 	# rajouter les clauses de connectivite
+	for xb in range(size):
+		for xa in range(size):
+			for yb in range(size):
+				for ya in range(size):
+					if (xa != ya) and (xb != yb):
+						x = var_from_coords(size, xa, xb)
+						y = var_from_coords(size, ya, yb)
+						C_xy = connectvar_from_vars(size, x, y)
+
+						file_content = file_content + str(-x) + " "
+						file_content = file_content + str(-y) + " "
+						file_content = file_content + str(C_xy) + " 0\n"
 
 
 	# rajouter les clauses de conditions de connectivite
