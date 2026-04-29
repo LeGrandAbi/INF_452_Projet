@@ -1,24 +1,35 @@
-Voici le plan:
+nom prenom
+nom prenom
+nom prenom
+nom prenom
 
-LES PRINCIPALES ETAPES DU PROGRAMME:
+sujet
+(mise en page dde garde)
 
-	[interface (input)]
-		|
-		|	{Matrice au format qu'on veut}
-		V
-	[Encodeur DIMAC]
-		|
-		|	{fichier format DIMAC}
-		V
-	[SAT-Solver (minisat)]
-		|
-		|	{fichier format DIMAC}
-		V
-	[Decodeur DIMAC]
-		|
-		|	{Matrice au meme format que precedement}
-		V
-	[interface (output)]
-	
-Ou [...] est un programme et {...} est un fichier qui servira de transfert de donne entre chaque programme
+[Sommaire]
 
+Partie 1: presentation du probleme
+	...
+
+Partie 2: Formalisation Propositionelle
+	...
+
+Partie 3: Contrainte de Voisinnage
+	...
+
+Partie 4: Contrainte de Connectivite
+	...
+
+Partie 5: Modelisation Globale
+	...
+
+Partie 6: Tests Pertinents
+	...
+
+Partie 7: Discussion sur la connectivite
+	...
+
+Partie 8: Conclusion
+	...
+
+Annexes
