@@ -132,11 +132,16 @@ def encode_dimac(matrice, input_filepath):
 
 
 def decode_dimac(size, filepath):
+	'''
+	...
+	'''
+	# extract the content of the given file
 	with open(filepath, "r") as f:
 		content = f.readlines()[1]
 		f.close()
 	content = content.split()
 
+	# ...
 	matrice = [[0 for j in range(size)] for i in range(size)]
 	i = 0
 	for y in range(size):

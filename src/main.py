@@ -4,8 +4,13 @@ from dimac_coder import *
 
 
 def execute_command(*cmd):
+	'''
+	...
+	'''
+	# execute the given command
 	print("\nExecuting : " + str(cmd))
 	result = subprocess.run(cmd, capture_output=True, text=True)
+	# outputs the result and/or the error returned
 	print("Exit Code:", result.returncode)
 	print("Output:", result.stdout)
 	print("Errors:", result.stderr)
