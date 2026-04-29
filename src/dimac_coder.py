@@ -20,7 +20,7 @@ def get_n_clauses(matrice):
 			if matrice[y][x] != 0:
 				n_clauses_unit = n_clauses_unit + 1 
 
-	return 12*(l**5) - 24*(l**4) + (l**3) + 12*(l**2) - 2*l + 1 + n_clauses_unit
+	return 2*(l**4) - 4*l + 2 + n_clauses_unit
 
 
 def encode_dimac(matrice, input_filepath):
@@ -28,7 +28,7 @@ def encode_dimac(matrice, input_filepath):
 
 	# rajouter l'entete
 
-	n_var = len(matrice)**3
+	n_var = len(matrice)**4 - 2
 	n_clauses = get_n_clauses(matrice)
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
@@ -64,13 +64,19 @@ def encode_dimac(matrice, input_filepath):
 		for xa in range(size):
 			for yb in range(size):
 				for ya in range(size):
-					if (xa != ya) and (xb != yb):
+					if (xa != ya) or (xb != yb):
 						x = var_from_coords(size, xa, xb)
 						y = var_from_coords(size, ya, yb)
 						C_xy = connectvar_from_vars(size, x, y)
 
+						# blanc
 						file_content = file_content + str(-x) + " "
 						file_content = file_content + str(-y) + " "
+						file_content = file_content + str(C_xy) + " 0\n"
+
+						# noir
+						file_content = file_content + str(x) + " "
+						file_content = file_content + str(y) + " "
 						file_content = file_content + str(C_xy) + " 0\n"
 
 
