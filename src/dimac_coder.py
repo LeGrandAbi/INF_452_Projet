@@ -1,10 +1,26 @@
 import sys
 
 def var_from_coords(matrice_size, x, y):
+	'''
+	returns the index of the variable representing the status of the cell matrice[y][x]
+
+	in the modelisation:
+	this variable is true if white
+					false if black
+	'''
 	return y*matrice_size + x + 1
 
 
 def connectvar_from_vars(matrice_size, x, y):
+	'''
+	returns the index of the variable representing the connectivity of two cells of index x and y
+	x and y are not coords, they are the index value of each cell
+
+	if x = (xa, xb) and y = (ya, yb)
+	to get the connectivity variable between x and y
+	we need to get the variable index of both x and y,
+	with var_from_coords(matrice_size, xa, xb) and var_from_coords(matrice_size, ya, yb)
+	'''
 	size = matrice_size**2
 	v = size + (x-1)*(size-1) + y - 1
 	if x > y:
@@ -25,8 +41,8 @@ def get_n_clauses(matrice):
 	l = len(matrice)
 
 	# a unitary clause is when a cell is defined (=/= 0)
-	# since matrice[y][y] is white if it equals 1
-	# 	and matrice[y][y] is black if it equals -1
+	# since matrice[y][x] is white if it equals 1
+	# 	and matrice[y][x] is black if it equals -1
 	n_clauses_unit = 0
 	for y in range(l):
 		for x in range(l):
