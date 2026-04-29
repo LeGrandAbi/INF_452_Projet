@@ -1,5 +1,3 @@
-import sys
-
 def var_from_coords(matrice_size, x, y):
 	'''
 	returns the index of the variable representing the status of the cell matrice[y][x]
@@ -53,15 +51,26 @@ def get_n_clauses(matrice):
 
 
 def encode_dimac(matrice, input_filepath):
+	'''
+	Write in a given filepath the dimac file associated with the given board (matrice)
+
+	in order:
+		write the header in a string called "file_content"
+		append in the same string the unitary constraints
+		append in the same string the no_square constraints
+		append in the same string the connectivity constraints
+		append in the same string the connectivity_conditions constraints (what it means for two cells to be connected)
+		writes into the given filename the produced string
+	'''
+
 	file_content = ""
 
-	# rajouter l'entete
-
+	# produce the header
 	n_var = len(matrice)**4 - 2
 	n_clauses = get_n_clauses(matrice)
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
-	# rajouter les clauses unitaires
+	# produce the unitary constraints
 	i = 1
 	for y in range(len(matrice)):
 		for x in range(len(matrice)):
@@ -73,7 +82,7 @@ def encode_dimac(matrice, input_filepath):
 
 	size = len(matrice)
 
-	# rajouter les clauses de voisinnage
+	# produce the no_square constraints
 	for y in range(size - 1):
 		for x in range(size - 1):
 			# blanc
@@ -88,7 +97,7 @@ def encode_dimac(matrice, input_filepath):
 			file_content = file_content + str(var_from_coords(size, x+1, y+1)) + " 0\n"
 
 
-	# rajouter les clauses de connectivite
+	# produce the connectivity constraints
 	for xb in range(size):
 		for xa in range(size):
 			for yb in range(size):
@@ -109,7 +118,7 @@ def encode_dimac(matrice, input_filepath):
 						file_content = file_content + str(C_xy) + " 0\n"
 
 
-	# rajouter les clauses de conditions de connectivite
+	# produce the connectivity_conditions constraints
 
 
 	with open(input_filepath, "w") as f:
