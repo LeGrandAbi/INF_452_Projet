@@ -1,4 +1,6 @@
 import pygame as pg
+import json
+import time
 import sys
 
 WINDOW_SIZE = 1000
@@ -19,6 +21,8 @@ class InputInterface():
 			elif event.type == pg.KEYDOWN:
 				if event.key == pg.K_RETURN:
 					active = False
+				if event.key == pg.K_s:
+					self.save_matrice()
 			elif event.type == pg.MOUSEBUTTONDOWN:
 				self.switch_cell(event.pos)
 		return active
@@ -61,6 +65,12 @@ class InputInterface():
 			self.window_active = self.handle_events()
 			self.update_window()
 
+	def save_matrice(self):
+		filename = "custom_matrices/" + time.strftime("%H_%M_%S", time.localtime())
+		with open(filename, "w") as f:	
+			json.dump(self.matrice, f)
+			f.close()
+
 
 class OutputInterface():
 	def __init__(self, matrice):
@@ -79,6 +89,8 @@ class OutputInterface():
 			elif event.type == pg.KEYDOWN:
 				if event.key == pg.K_RETURN:
 					active = False
+				if event.key == pg.K_s:
+					self.save_matrice()
 		return active
 
 	def update_window(self):
@@ -107,3 +119,9 @@ class OutputInterface():
 					pg.draw.circle(self.window, "white", (circle_x, circle_y), circle_r)
 				elif self.matrice[y][x] == -1:
 					pg.draw.circle(self.window, "black", (circle_x, circle_y), circle_r)
+
+	def save_matrice(self):
+		filename = "custom_matrices/" + time.strftime("%H_%M_%S", time.localtime())
+		with open(filename, "w") as f:	
+			json.dump(self.matrice, f)
+			f.close()
