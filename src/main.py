@@ -42,5 +42,6 @@ execute_command("minisat", input_filepath, output_filepath)
 result_matrice = decode_dimac(size, output_filepath)
 
 # ...
-outputInterface = OutputInterface(result_matrice)
-outputInterface.run()
+if result_matrice != None:
+	outputInterface = OutputInterface(result_matrice)
+	outputInterface.run()

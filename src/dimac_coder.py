@@ -133,21 +133,28 @@ def encode_dimac(matrice, input_filepath):
 
 def decode_dimac(size, filepath):
 	'''
-	...
+	Returns a filled matrice if the dimac output is satisfiable, Nonetype if it is not
 	'''
 	# extract the content of the given file
 	with open(filepath, "r") as f:
-		content = f.readlines()[1]
+		content = f.readlines()
 		f.close()
-	content = content.split()
 
-	# ...
-	matrice = [[0 for j in range(size)] for i in range(size)]
-	i = 0
-	for y in range(size):
-		for x in range(size):
-			c = int(content[i])
-			matrice[y][x] = c / abs(c)
-			i = i + 1
+	satisfiability = content[0]
+	if satisfiability == "SAT\n":
+		result = content[1]
+		result = result.split()
+	
+		# ...
+		matrice = [[0 for j in range(size)] for i in range(size)]
+		i = 0
+		for y in range(size):
+			for x in range(size):
+				c = int(result[i])
+				matrice[y][x] = c / abs(c)
+				i = i + 1
+	else:
+		print("This board is UNSATISFIABLE")
+		matrice = None
 
 	return matrice
