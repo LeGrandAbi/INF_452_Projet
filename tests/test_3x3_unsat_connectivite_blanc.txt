@@ -3,6 +3,7 @@ grid: 3
 0 0 0
 0 0 0
 solution:
+SATISFIABLE
 Number of variables:           81    
 Number of clauses:            118 
 restarts              : 1
