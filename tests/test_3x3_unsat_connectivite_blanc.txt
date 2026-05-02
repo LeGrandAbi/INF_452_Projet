@@ -1,0 +1,15 @@
+grid: 3
+1 0 1
+0 0 0
+0 0 0
+solution:
+Number of variables:           81    
+Number of clauses:            118 
+restarts              : 1
+conflicts             : 0              (-nan /sec)
+decisions             : 1              (0.00 % random) (725 /sec)
+propagations          : 4              (2901 /sec)
+conflict literals     : 0              (-nan % deleted)
+1 -1 1
+-1 -1 -1
+-1 1 -1 
