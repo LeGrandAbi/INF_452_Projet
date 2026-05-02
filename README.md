@@ -6,6 +6,8 @@ Brosse Arsene, L2 MIN, 12308501
 
 Laachiri Omar, L2 MIAGE, 12313076
 
+Maati Yacine , L2 MIN, 12519868
+
 ## Description du Problème
 
 Le Yin-Yang se joue sur une grille. Le but est de remplir chaque case avec un cercle noir ou blanc selon les règles suivantes:
