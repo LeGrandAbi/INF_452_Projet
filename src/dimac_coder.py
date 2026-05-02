@@ -20,8 +20,8 @@ def connectvar_from_vars(matrice_size, x, y):
 	with var_from_coords(matrice_size, xa, xb) and var_from_coords(matrice_size, ya, yb)
 	'''
 	size = matrice_size**2
-	v = size + (x-1)*(size-1) + y - 1
-	if x > y:
+	v = size + (x-1)*(size-1) + y
+	if x < y:
 		v = v - 1
 	return v
 
@@ -66,7 +66,7 @@ def encode_dimac(matrice, input_filepath):
 	file_content = ""
 
 	# produce and append to file_content the header
-	n_var = len(matrice)**4 - 2
+	n_var = len(matrice)**4 
 	n_clauses = get_n_clauses(matrice)
 	file_content = f"p cnf {n_var} {n_clauses}\n"
 
