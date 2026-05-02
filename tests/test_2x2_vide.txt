@@ -1,0 +1,14 @@
+grid: 2
+0  0
+0  0
+solution:
+SATISFIABLE
+Number of variables:            16                           
+Number of clauses:              26
+restarts              : 1
+conflicts             : 0              (0 /sec)
+decisions             : 1              (0.00 % random) (1105 /sec)
+propagations          : 0              (0 /sec)
+conflict literals     : 0              (-nan % deleted)
+1  -1
+-1  -1
