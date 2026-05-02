@@ -6,12 +6,16 @@ import sys
 WINDOW_SIZE = 1000
 
 class InputInterface():
-	def __init__(self, size):
+	def __init__(self, size, matrice):
 		self.window = pg.display.set_mode((WINDOW_SIZE,WINDOW_SIZE))
 		self.window_rect = self.window.get_rect()
 		self.window_active = False
 		self.size = size
-		self.matrice = [[0 for j in range(size)] for i in range(size)]
+
+		if matrice != None:
+			self.matrice = matrice
+		else:
+			self.matrice = [[0 for j in range(size)] for i in range(size)]
 
 	def handle_events(self):
 		active = True

@@ -16,21 +16,38 @@ def execute_command(*cmd):
 	print("Errors:", result.stderr)
 
 
+def load_matrice(filename):
+	'''
+	...
+	'''
+	with open(filename, "r") as f:
+		matrice = json.load(f)
+	return matrice
+
 # ...
 DIMAC_FOLDER_PATH = "dimac"
 DIMAC_INPUT_FILENAME = "input_dimac"
 DIMAC_OUTPUT_FILENAME = "output_dimac"
+execute_command("mkdir", DIMAC_FOLDER_PATH)
+execute_command("mkdir", "custom_matrices")
 
 # ...
-size = int(input("Enter board size : "))
+prompt = input("Enter board size : ")
+prompt = prompt.split()
+matrice = None
+if prompt[0].lower() == "load":
+	filename = "custom_matrices/" + prompt[1]
+	matrice = load_matrice(filename)
+	size = len(matrice)
+else:
+	size = int(prompt[0])
 
 # ...
-inputInterface = InputInterface(size)
+inputInterface = InputInterface(size, matrice)
 inputInterface.run()
 matrice = inputInterface.get_matrice()
 
 # ...
-execute_command("mkdir", DIMAC_FOLDER_PATH)
 input_filepath = DIMAC_FOLDER_PATH + "/" + DIMAC_INPUT_FILENAME
 output_filepath = DIMAC_FOLDER_PATH + "/" + DIMAC_OUTPUT_FILENAME
 encode_dimac(matrice, input_filepath)
