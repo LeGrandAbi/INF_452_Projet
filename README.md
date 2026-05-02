@@ -3,6 +3,7 @@
 ## Membres
 
 Brosse Arsene, L2 MIN, 12308501
+Laachiri Omar, L2 MIAGE, 12313076
 
 ## Description du Problème
 
